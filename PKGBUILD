@@ -1,7 +1,7 @@
 # Maintainer: Abdó Roig-Maranges <abdo.roig@gmail.com>
 
 pkgname=extempore-git
-pkgver=0.7.0.r413.g2b15d64c
+pkgver=0.8.3.r29.g67086c16
 pkgrel=1
 pkgdesc="A cyber-physical programming environment for live coding"
 arch=('i686' 'x86_64')
@@ -13,6 +13,7 @@ optdepends=('jack')
 provides=('extempore')
 conflicts=('extempore')
 source=("git+https://github.com/digego/extempore.git")
+source=("git+https://github.com/Lapin0t/extempore.git")
 sha256sums=('SKIP')
 
 pkgver() {
@@ -23,14 +24,13 @@ build() {
   mkdir -p "${srcdir}/build"
   cd "${srcdir}/build"
 
-  cmake -DCMAKE_INSTALL_PREFIX=/opt \
+  cmake -DCMAKE_INSTALL_PREFIX=/opt/extempore \
         -DJACK=ON                   \
         -DBUILD_DEPS=ON             \
         -DPACKAGE=ON                \
         ../extempore
 
   make
-  make assets
 }
 
 package() {
